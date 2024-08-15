@@ -43,10 +43,6 @@ jobs:
       - name: Build project
         run: flutter build web
 
-      - name: Remove base href from index.html
-        run: |
-          sed -i '/<base href="\/">/d' build/web/index.html
-
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
