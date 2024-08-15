@@ -59,7 +59,6 @@ class MyHomePage extends StatelessWidget {
                 ),
                 padding: const EdgeInsets.all(24),
                 child: Column(
-                  mainAxisSize: MainAxisSize.min,
                   children: [
                     Align(
                       alignment: Alignment.topCenter,
@@ -74,8 +73,6 @@ class MyHomePage extends StatelessWidget {
                     ),
                     const SizedBox(height: 24),
                     SizedBox(
-                      width: double.infinity,
-                      height: 194,
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -122,6 +119,27 @@ class MyHomePage extends StatelessWidget {
                         ],
                       ),
                     ),
+                    const SizedBox(
+                      height: 24,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Image.asset(
+                          'assets/images/image-avatar.webp',
+                          height: 32.0,
+                          fit: BoxFit.cover,
+                        ),
+                        const SizedBox(width: 12),
+                        const Text(
+                          'Greg Hooper',
+                          style: TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w800,
+                          ),
+                        ),
+                      ],
+                    )
                   ],
                 ),
               ),
