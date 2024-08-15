@@ -20,10 +20,17 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class MyHomePage extends StatelessWidget {
+class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
 
   final String title;
+
+  @override
+  MyHomePageState createState() => MyHomePageState();
+}
+
+class MyHomePageState extends State<MyHomePage> {
+  bool isButtonHovered = false;
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +44,8 @@ class MyHomePage extends StatelessWidget {
             padding: const EdgeInsets.all(40),
             color: const Color(0xFFF4D04E),
             child: Center(
-              child: Container(
+              child: AnimatedContainer(
+                duration: const Duration(milliseconds: 150),
                 width: 384,
                 constraints: const BoxConstraints(
                   minHeight: 522,
@@ -45,11 +53,13 @@ class MyHomePage extends StatelessWidget {
                 decoration: BoxDecoration(
                   color: const Color.fromARGB(255, 255, 255, 255),
                   borderRadius: BorderRadius.circular(10),
-                  boxShadow: const [
+                  boxShadow: [
                     BoxShadow(
                       color: Colors.black,
                       blurRadius: 0,
-                      offset: Offset(8, 8),
+                      offset: isButtonHovered
+                          ? const Offset(16, 16)
+                          : const Offset(8, 8),
                     ),
                   ],
                   border: Border.all(
@@ -101,12 +111,44 @@ class MyHomePage extends StatelessWidget {
                                 fontWeight: FontWeight.w600),
                           ),
                           const SizedBox(height: 12),
-                          const Text(
-                            'HTML & CSS foundations',
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 24,
-                                fontWeight: FontWeight.w800),
+                          MouseRegion(
+                            onEnter: (_) =>
+                                setState(() => isButtonHovered = true),
+                            onExit: (_) =>
+                                setState(() => isButtonHovered = false),
+                            child: TextButton(
+                              style: ButtonStyle(
+                                backgroundColor: WidgetStateProperty.all(
+                                  const Color.fromARGB(255, 255, 255, 255),
+                                ),
+                                padding: WidgetStateProperty.all(
+                                  const EdgeInsets.symmetric(
+                                    horizontal: 0,
+                                    vertical: 0,
+                                  ),
+                                ),
+                                overlayColor:
+                                    WidgetStateProperty.all(Colors.transparent),
+                                foregroundColor:
+                                    WidgetStateProperty.resolveWith((states) {
+                                  if (states.contains(WidgetState.hovered)) {
+                                    return const Color(0xFFF4D04E);
+                                  }
+                                  return Colors.black87;
+                                }),
+                                animationDuration: const Duration(
+                                    milliseconds:
+                                        150), // Adjust the duration here
+                              ),
+                              child: const Text(
+                                'HTML & CSS foundations',
+                                style: TextStyle(
+                                  fontSize: 24,
+                                  fontWeight: FontWeight.w800,
+                                ),
+                              ),
+                              onPressed: () {},
+                            ),
                           ),
                           const SizedBox(height: 12),
                           const Text(
@@ -114,7 +156,7 @@ class MyHomePage extends StatelessWidget {
                             style: TextStyle(
                                 fontSize: 16,
                                 fontWeight: FontWeight.w600,
-                                color: Color.fromRGBO(127, 127, 127, 1)),
+                                color: Color(0xFF7F7F7F)),
                           ),
                         ],
                       ),
