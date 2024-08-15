@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
         fontFamily: 'Figtree', // Set the default font family
       ),
       title: 'Blog preview card',
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MyHomePage(title: 'Blog preview card'),
     );
   }
 }
@@ -46,19 +46,39 @@ class MyHomePageState extends State<MyHomePage> {
             child: Center(
               child: LayoutBuilder(
                 builder: (context, constraints) {
-                  // Determine the width based on the screen width
-                  double containerWidth =
-                      constraints.maxWidth > 768 ? 384 : 327;
-
+                  double containerWidth;
+                  Map<String, int> h1;
+                  Map<String, int> span;
+                  Map<String, int> p;
+                  if (constraints.maxWidth > 768) {
+                    containerWidth = 384;
+                    h1 = {
+                      'fontSize': 24,
+                    };
+                    span = {
+                      'fontSize': 14,
+                    };
+                    p = {
+                      'fontSize': 16,
+                    };
+                  } else {
+                    containerWidth = 337;
+                    h1 = {
+                      'fontSize': 20,
+                    };
+                    span = {
+                      'fontSize': 12,
+                    };
+                    p = {
+                      'fontSize': 14,
+                    };
+                  }
                   return AnimatedContainer(
                     duration: const Duration(milliseconds: 150),
                     width: containerWidth,
-                    constraints: const BoxConstraints(
-                      minHeight: 522,
-                    ),
                     decoration: BoxDecoration(
                       color: const Color.fromARGB(255, 255, 255, 255),
-                      borderRadius: BorderRadius.circular(10),
+                      borderRadius: BorderRadius.circular(20),
                       boxShadow: [
                         BoxShadow(
                           color: Colors.black,
@@ -100,20 +120,20 @@ class MyHomePageState extends State<MyHomePage> {
                                   color: const Color(0xFFF4D04E),
                                   borderRadius: BorderRadius.circular(4),
                                 ),
-                                child: const Text(
+                                child: Text(
                                   'Learning',
                                   style: TextStyle(
                                       color: Colors.black,
-                                      fontSize: 14,
+                                      fontSize: span['fontSize']!.toDouble(),
                                       fontWeight: FontWeight.w800),
                                 ),
                               ),
                               const SizedBox(height: 12),
-                              const Text(
+                              Text(
                                 'Published 21 Dec 2023',
                                 style: TextStyle(
                                     color: Colors.black,
-                                    fontSize: 14,
+                                    fontSize: span['fontSize']!.toDouble(),
                                     fontWeight: FontWeight.w600),
                               ),
                               const SizedBox(height: 12),
@@ -148,10 +168,10 @@ class MyHomePageState extends State<MyHomePage> {
                                         milliseconds:
                                             150), // Adjust the duration here
                                   ),
-                                  child: const Text(
+                                  child: Text(
                                     'HTML & CSS foundations',
                                     style: TextStyle(
-                                      fontSize: 24,
+                                      fontSize: h1['fontSize']!.toDouble(),
                                       fontWeight: FontWeight.w800,
                                     ),
                                   ),
@@ -159,12 +179,12 @@ class MyHomePageState extends State<MyHomePage> {
                                 ),
                               ),
                               const SizedBox(height: 12),
-                              const Text(
+                              Text(
                                 'These languages are the backbone of every website, defining structure, content, and presentation.',
                                 style: TextStyle(
-                                    fontSize: 16,
+                                    fontSize: p['fontSize']!.toDouble(),
                                     fontWeight: FontWeight.w600,
-                                    color: Color(0xFF7F7F7F)),
+                                    color: const Color(0xFF7F7F7F)),
                               ),
                             ],
                           ),
