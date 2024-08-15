@@ -21,3 +21,11 @@ flutter:
   uses-material-design: true
   assets:
     - assets/images/
+  fonts:
+    - family: Figtree
+      fonts:
+        - asset: assets/fonts/Figtree-VariableFont_wght.ttf
+        - asset: assets/fonts/static/Figtree-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/static/Figtree-ExtraBold.ttf
+          weight: 800

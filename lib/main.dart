@@ -10,9 +10,12 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
+      theme: ThemeData(
+        fontFamily: 'Figtree', // Set the default font family
+      ),
       title: 'Blog preview card',
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
 }
@@ -87,20 +90,34 @@ class MyHomePage extends StatelessWidget {
                             child: const Text(
                               'Learning',
                               style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 14,
-                              ),
+                                  color: Colors.black,
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w800),
                             ),
                           ),
-                          const SizedBox(height: 10),
+                          const SizedBox(height: 12),
                           const Text(
-                            'Child 2',
-                            style: TextStyle(color: Colors.black, fontSize: 18),
+                            'Published 21 Dec 2023',
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 14,
+                                fontWeight: FontWeight.w600),
                           ),
-                          const SizedBox(height: 10),
+                          const SizedBox(height: 12),
                           const Text(
-                            'Child 3',
-                            style: TextStyle(color: Colors.black, fontSize: 18),
+                            'HTML & CSS foundations',
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 24,
+                                fontWeight: FontWeight.w800),
+                          ),
+                          const SizedBox(height: 12),
+                          const Text(
+                            'These languages are the backbone of every website, defining structure, content, and presentation.',
+                            style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w600,
+                                color: Color.fromRGBO(127, 127, 127, 1)),
                           ),
                         ],
                       ),
