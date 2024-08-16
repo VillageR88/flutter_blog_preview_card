@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:universal_html/html.dart' as html;
 
 void main() {
   runApp(const MyApp());
+  html.document.getElementById('loadingPicture')?.style.display = 'none';
+  html.document.getElementById('spinner')?.classes.remove('loading');
 }
 
 class MyApp extends StatelessWidget {
